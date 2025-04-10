@@ -12,11 +12,11 @@ Step 2: Create the Application
 
 Run the following command:
 
-argocd app create argocd-basic-cyber-placeholder \
-    --repo https://github.com/cyber-placeholder/argocd-gitops-resources.git \
-    --path argocd-basic-implementation-resources \
+argocd app create argocd-basic-cyber-nodejs-webserver \
+    --repo https://github.com/vtb-wanderers63/argocd-gitops-resources \
+    --path basic-k8s-resource-manifests \
     --dest-server https://kubernetes.default.svc \
-    --dest-namespace cyber-placeholder
+    --dest-namespace basic-cyber-nodejs-webserver
 
 Explanation of Flags
 	•	--repo: Specifies the Git repository URL.
