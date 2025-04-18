@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: nodejs-express-kustomize-app
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/vtb-wanderers63/argocd-gitops-resources # 👈 your Git repo URL
+    targetRevision: master # 👈 branch, tag, or commit SHA
+    path: kustomize/overlays/dev # 👈 path to kustomization.yaml
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: kustomize-app
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true

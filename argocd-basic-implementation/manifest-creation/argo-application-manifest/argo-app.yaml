@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: nodejs-express-app
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/vtb-wanderers63/argocd-gitops-resources
+    targetRevision: master
+    path: basic-k8s-resource-manifests
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: manifest-app
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+  revisionHistoryLimit: 5
